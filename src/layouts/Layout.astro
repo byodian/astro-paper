@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
 import "@/styles/global.css";
+import { BLOG_LINKS } from "@/constants";
 
 export interface Props {
   title?: string;
@@ -56,7 +57,7 @@ const structuredData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={BLOG_LINKS.FAVICON} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
@@ -65,7 +66,7 @@ const structuredData = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href={BLOG_LINKS.SITE_MAP} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
@@ -111,7 +112,7 @@ const structuredData = {
       rel="alternate"
       type="application/rss+xml"
       title={SITE.title}
-      href={new URL("rss.xml", Astro.site)}
+      href={new URL(BLOG_LINKS.RSS, Astro.site)}
     />
 
     <meta name="theme-color" content="" />
@@ -130,7 +131,7 @@ const structuredData = {
 
     <ClientRouter />
 
-    <script is:inline src="/toggle-theme.js"></script>
+    <script is:inline src={BLOG_LINKS.TOGGLE_THEME}></script>
   </head>
   <body>
     <slot />

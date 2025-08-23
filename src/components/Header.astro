@@ -8,6 +8,7 @@ import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
+import { BLOG_LINKS } from "@/constants";
 
 const { pathname } = Astro.url;
 
@@ -40,7 +41,7 @@ const isActive = (path: string) => {
       class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"
     >
       <a
-        href="/"
+        href={BLOG_LINKS.SITE_BASE_URL}
         class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
       >
         {SITE.title}
@@ -69,17 +70,17 @@ const isActive = (path: string) => {
           ]}
         >
           <li class="col-span-2">
-            <a href="/posts" class:list={{ "active-nav": isActive("/posts") }}>
+            <a href={BLOG_LINKS.POSTS} class:list={{ "active-nav": isActive(BLOG_LINKS.POSTS) }}>
               Posts
             </a>
           </li>
           <li class="col-span-2">
-            <a href="/tags" class:list={{ "active-nav": isActive("/tags") }}>
+            <a href={BLOG_LINKS.TAGS} class:list={{ "active-nav": isActive(BLOG_LINKS.TAGS) }}>
               Tags
             </a>
           </li>
           <li class="col-span-2">
-            <a href="/about" class:list={{ "active-nav": isActive("/about") }}>
+            <a href={BLOG_LINKS.ABOUT} class:list={{ "active-nav": isActive(BLOG_LINKS.ABOUT) }}>
               About
             </a>
           </li>
@@ -87,11 +88,11 @@ const isActive = (path: string) => {
             SITE.showArchives && (
               <li class="col-span-2">
                 <LinkButton
-                  href="/archives"
+                  href={BLOG_LINKS.ARCHIVES}
                   class:list={[
                     "focus-outline flex justify-center p-3 sm:p-1",
                     {
-                      "active-nav [&>svg]:stroke-accent": isActive("/archives"),
+                      "active-nav [&>svg]:stroke-accent": isActive(BLOG_LINKS.ARCHIVES),
                     },
                   ]}
                   ariaLabel="archives"
@@ -105,10 +106,10 @@ const isActive = (path: string) => {
           }
           <li class="col-span-1 flex items-center justify-center">
             <LinkButton
-              href="/search"
+              href={BLOG_LINKS.SEARCH}
               class:list={[
                 "focus-outline flex p-3 sm:p-1",
-                { "[&>svg]:stroke-accent": isActive("/search") },
+                { "[&>svg]:stroke-accent": isActive(BLOG_LINKS.SEARCH) },
               ]}
               ariaLabel="search"
               title="Search"

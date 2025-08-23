@@ -1,4 +1,4 @@
-import { BLOG_PATH } from "@/content.config";
+import { BLOG_LINKS } from "@/constants";
 import { slugifyStr } from "./slugify";
 
 /**
@@ -14,14 +14,14 @@ export function getPath(
   includeBase = true
 ) {
   const pathSegments = filePath
-    ?.replace(BLOG_PATH, "")
+    ?.replace(BLOG_LINKS.BLOG_PATH, "")
     .split("/")
     .filter(path => path !== "") // remove empty string in the segments ["", "other-path"] <- empty string will be removed
     .filter(path => !path.startsWith("_")) // exclude directories start with underscore "_"
     .slice(0, -1) // remove the last segment_ file name_ since it's unnecessary
     .map(segment => slugifyStr(segment)); // slugify each segment path
 
-  const basePath = includeBase ? "/posts" : "";
+  const basePath = includeBase ? BLOG_LINKS.POSTS : "";
 
   // Making sure `id` does not contain the directory
   const blogId = id.split("/");
